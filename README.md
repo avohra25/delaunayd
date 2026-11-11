@@ -1,0 +1,21 @@
+# delaunayd
+
+Robust 2D computational geometry in D, built on exact geometric predicates.
+
+Work in progress. Currently included:
+
+- **Exact expansion arithmetic** (`delaunayd.expansion`): Shewchuk's
+  error-free transformations (`twoSum`, `twoProduct`, ...) and
+  zero-eliminating expansion sum/scale/product.
+- **Robust predicates** (`delaunayd.predicates`): adaptive `orient2d`
+  (floating-point filter, then stages B/C, then exact) and `incircle`
+  (filter, then exact expansion evaluation). Signs are always exact.
+- **Convex hull** (`delaunayd.hull`): Andrew's monotone chain on top of the
+  exact predicates, handling duplicates and collinear points; cross-checked
+  against an O(n^3) brute force on random and degenerate inputs.
+
+```sh
+dub test
+```
+
+Phobos only, no dependencies. MIT licensed.

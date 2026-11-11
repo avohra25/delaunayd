@@ -1,0 +1,14 @@
+{
+	"name": "delaunayd",
+	"description": "Robust 2D computational geometry in D: exact predicates, convex hull, Delaunay triangulation",
+	"authors": ["Aryan Vohra"],
+	"copyright": "Copyright © 2026, Aryan Vohra",
+	"license": "MIT",
+	"targetType": "library",
+	"dflags-ldc": ["--fp-contract=off"],
+	"buildTypes": {
+		"unittest-opt": {
+			"buildOptions": ["unittests", "optimize", "inline", "debugInfo"]
+		}
+	}
+}
