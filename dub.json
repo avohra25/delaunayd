@@ -1,11 +1,22 @@
 {
 	"name": "delaunayd",
-	"description": "Robust 2D computational geometry in D: exact predicates, convex hull, Delaunay triangulation",
+	"description": "Robust 2D computational geometry in D: exact adaptive predicates, convex hull, Delaunay/constrained triangulation, Voronoi, CLI with SVG output",
 	"authors": ["Aryan Vohra"],
 	"copyright": "Copyright © 2026, Aryan Vohra",
 	"license": "MIT",
-	"targetType": "library",
 	"dflags-ldc": ["--fp-contract=off"],
+	"configurations": [
+		{
+			"name": "application",
+			"targetType": "executable",
+			"mainSourceFile": "source/app.d"
+		},
+		{
+			"name": "library",
+			"targetType": "library",
+			"excludedSourceFiles": ["source/app.d"]
+		}
+	],
 	"buildTypes": {
 		"unittest-opt": {
 			"buildOptions": ["unittests", "optimize", "inline", "debugInfo"]
