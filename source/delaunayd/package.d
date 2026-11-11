@@ -6,3 +6,5 @@ public import delaunayd.expansion;
 public import delaunayd.predicates;
 public import delaunayd.hull;
 public import delaunayd.triangulation;
+public import delaunayd.constrained;
+public import delaunayd.voronoi;

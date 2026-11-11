@@ -69,7 +69,7 @@ final class Triangulation
     int[] vertexEdge;
 
     private int[] hullNext, hullPrev, hullTri;
-    private bool[ulong] fixedEdges; // constrained edges (unordered vertex pairs)
+    package bool[ulong] fixedEdges; // constrained edges (unordered vertex pairs)
 
     /// Builds the Delaunay triangulation of `pts`. Throws on NaN/infinite input.
     this(const(Point)[] pts)
@@ -524,6 +524,19 @@ final class Triangulation
     {
         if (u > v) { const t = u; u = v; v = t; }
         return (cast(ulong) cast(uint) u << 32) | cast(uint) v;
+    }
+
+    /// Number of constrained edges (see `delaunayd.constrained`).
+    size_t constraintCount() const @safe pure nothrow { return fixedEdges.length; }
+
+    /// The constrained edges as [u, v] pairs with u < v, sorted.
+    int[2][] constrainedEdges() const
+    {
+        int[2][] r;
+        foreach (k; fixedEdges.byKey)
+            r ~= [cast(int)(k >> 32), cast(int)(k & 0xFFFF_FFFF)];
+        r.sort();
+        return r;
     }
 
     /// True if (u, v) has been inserted as a constrained edge.
